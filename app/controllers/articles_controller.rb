@@ -4,8 +4,15 @@ require 'nokogiri'
 class ArticlesController < ApplicationController
   def index
     @articles = get_parsed_articles
-    @articles.map{ |article| Article.create(article) }
-    p @articles
+
+    @articles.each{ |article| 
+      begin 
+        Article.create(article) 
+      rescue ActiveRecord::RecordNotUnique => e
+        p "Article already saved"
+      end
+    }
+    @articles = Article.all
   end
 
   def show
@@ -22,7 +29,7 @@ class ArticlesController < ApplicationController
         'title'       => item.at('./title').text,
         'link'        => item.at('./link').text,
         'description' => item.at('./description').text,
-        'pub-date'        => item.at('./date').text
+        'pub_date'        => item.at('./date').text
       }
 
       item['description'] = item['description'].split('<p>', 2).first if item['description']
