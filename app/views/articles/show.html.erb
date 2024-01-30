@@ -1,2 +1,13 @@
-<h1>Articles#show</h1>
-<p>Find me in app/views/articles/show.html.erb</p>
+<div class="container-lg">
+<h1><%= @article.title%></h1>
+
+<div class="card" style="width: 75%;">
+  <div class="card-body">
+    <h5 class="card-title"><%= @article.title%></h5>
+    <p class="card-text"><%= @article.description%></p>
+    <%= link_to "Go Back", root_path %>
+    <a href=<%= @article.link %> class="card-link">Read More</a>
+  </div>
+</div>
+
+</div>
