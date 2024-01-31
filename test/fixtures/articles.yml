@@ -5,9 +5,11 @@ one:
   description: MyText
   pub_date: 2024-01-30 11:31:40
   read: false
+  link: unique_link_1
 
 two:
   title: MyString
   description: MyText
   pub_date: 2024-01-30 11:31:40
   read: false
+  link: unique_link_2
