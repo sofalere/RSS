@@ -5,7 +5,8 @@
 
 :scheduler:
   :schedule:
-      hello_world:
-        cron: '0 * * * * *'   # Runs once per minute
-        class: HelloWorld
+      fetch_data_scheduler:
+        cron: '0 */14 * * *'   # Runs every 14 hours
+        class: FetchDataScheduler
         queue: default
+        retry: false
