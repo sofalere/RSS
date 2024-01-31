@@ -1,3 +1,6 @@
+require 'open-uri'
+require 'nokogiri'
+
 class RssDataFetcher
   API_URL = "https://rss.slashdot.org/Slashdot/slashdotMain"
 

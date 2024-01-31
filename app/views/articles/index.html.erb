@@ -1,19 +1,23 @@
 <div class="container-md list-group">
   <% @articles.each do |article| %>
-    <%= link_to article_path(article.id) do%>
-      <div class=" list-group-item list-group-item-action">
+      <div class="list-group-item list-group-item-action">
         <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-        <label class="form-check-label" for="flexCheckDefault">
-          Mark Read
-        </label>
-      </div>
-        <h3><%= article.title %></h3>
+          <input
+            class="form-check-input mark-read-checkbox"
+            type="checkbox"
+            value="<%= article.id %>"
+            id="flexCheckDefault_<%= article.id %>"
+            <%= 'checked' if article.read? %>
+          />
+          <label class="form-check-label" for="flexCheckDefault_<%= article.id %>">
+            <%= article.read? ? 'Mark Unread' : 'Mark Read' %>
+          </label>
+        </div>
+        <h3><%= article.title %></h3>  
         <p class="text-muted"><%= preview(article.description) %></p>
+        <%= link_to "Read More", article_path(article.id) %>
         <p>Date: <%= article.pub_date %></p>
         <br>
       </div>
-    <% end %>
   <% end %>
-  </div>
 </div>
