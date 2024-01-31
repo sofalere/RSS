@@ -2,7 +2,7 @@
   <% @articles.each do |article| %>
       <div class="list-group-item list-group-item-action">
         <div class="form-check">
-          <input
+          <input onClick="handleToggleRead(event, <%= article.id%>)"
             class="form-check-input mark-read-checkbox"
             type="checkbox"
             value="<%= article.id %>"

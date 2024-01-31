@@ -11,6 +11,8 @@ class ArticlesController < ApplicationController
   def update
     @article = Article.find(params[:id])
     @article.toggle_read_status
-    render json: { status: 'success', read: @article.read }
+    @articles = Article.order(pub_date: :desc)
+
+    render :index, layout: 'application'
   end
 end
