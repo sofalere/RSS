@@ -1,9 +1,16 @@
 require "application_system_test_case"
 
 class ArticlesTest < ApplicationSystemTestCase
-  test "should show main articles list" do
+  test "should show main articles page" do
     visit articles_path
+  
     assert_selector "h1", text: "Articles"
+  end
+
+  test "should show articles list" do
+    visit articles_path
+
+    assert_selector ".list-group-item", minimum: 1
   end
 
   test "should toggle read status on click" do

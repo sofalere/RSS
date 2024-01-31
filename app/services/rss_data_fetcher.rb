@@ -43,14 +43,4 @@ class RssDataFetcher
     new_articles = articles.select { |article| !existing_links.include?(article['link']) }
     Article.insert_all(new_articles)
   end
-
-  # def save_articles(articles)
-  #   articles.each { |article| 
-  #     begin 
-  #       Article.create(article) 
-  #     rescue ActiveRecord::RecordNotUnique => e
-  #       p "Article already saved"
-  #     end
-  #   }
-  # end
 end

@@ -17,7 +17,7 @@
         <h3><%= article.title %></h3>  
         <p class="text-muted"><%= preview(article.description) %></p>
         <%= link_to "Read More", article_path(article.id) %>
-        <p>Date: <%= article.pub_date %></p>
+        <p>Date Published: <%= article.pub_date.to_date %></p>
         <br>
       </div>
   <% end %>
