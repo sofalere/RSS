@@ -45,7 +45,11 @@ gem 'nokogiri'
 
 gem 'open-uri'
 
-gem 'requestjs-rails'
+gem 'sidekiq'
+
+gem 'sidekiq-scheduler'
+
+# gem 'requestjs-rails'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"

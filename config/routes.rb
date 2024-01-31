@@ -1,5 +1,10 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   # get 'articles/:id', to: "articles#show", as: :article
+  mount Sidekiq::Web => "/sidekiq"
+
+
   resources :articles, only: [:index, :show, :update]
 
 
