@@ -10,3 +10,9 @@
         class: FetchDataScheduler
         queue: default
         retry: false
+
+      article_cleanup_scheduler:
+        cron:  '0 4 */2 * *'   # Runs every other night at 4 am
+        class: ArticleCleanupScheduler
+        queue: default
+        retry: false
