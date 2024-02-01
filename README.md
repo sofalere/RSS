@@ -12,6 +12,12 @@ Ensure you have Ruby v3.0 or later installed.
 git clone https://github.com/sofalere/RSS.git
 ```
 
+#### Open Root
+
+```bash
+cd RSS
+```
+
 #### Install Dependencies
 
 ```bash
@@ -36,18 +42,25 @@ http://localhost:3000/
 
 ***
 
-The below 2 steps are optional and are for offline data fetching (explained more in below section):
+The below 3 steps are optional and are for offline data fetching (explained more in below section):
 
-#### Ensure you have Redis installed and started
+#### Install Redis
 
 https://redis.io/docs/install/install-redis/
 
+#### Start Redis (on Mac)
+
+```bash
+brew services start redis
+```
+- run in any other terminal
+  
 #### Start Sdiekiq
 
 ```bash
 bundle exec sidekiq
 ```
-- run in a separate terminal from Rails app and from Redis app
+- run in another terminal but make sure its from the apps root directory
 
 ***
 
