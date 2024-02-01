@@ -1,24 +1,102 @@
-# README
+## Welcome to the Rails RSS Feed App!
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Getting Started
 
-Things you may want to cover:
+#### Ruby Version
 
-* Ruby version
+Ensure you have Ruby v3.0 or later installed.
 
-* System dependencies
+#### Clone the Repository
 
-* Configuration
+```bash
+git clone https://github.com/sofalere/RSS.git
+```
 
-* Database creation
+#### Install Dependencies
 
-* Database initialization
+```bash
+bundle install
+```
 
-* How to run the test suite
+#### Ensure Database Schema is Up to Date
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+rails db:migrate
+```
 
-* Deployment instructions
+#### Run Rails Server
 
-* ...
+```bash
+rails s
+```
+
+#### View App
+
+http://localhost:3000/
+
+***
+
+The below 2 steps are optional and are for offline data fetching (explained more in below section):
+
+#### Ensure you have Redis installed and started
+
+https://redis.io/docs/install/install-redis/
+
+#### Start Sdiekiq
+
+```bash
+bundle exec sidekiq
+```
+- run in a separate terminal from Rails app and from Redis app
+
+***
+
+### Testing
+`rails test`
+
+# Features:
+
+### Fetches data from RSS feed URL 
+"/app/services/rss_data_fetcher.rb"
+
+`RssDataFetcher.run() -> File instance`
+- the provided RSS_URL saved as constant 
+
+### Parses XML data
+"/app/services/xml_data_parser.rb"
+
+`XmlDataParser.run(fileInstance) -> [{title:, link:, description:, pub_date:}]`
+
+### Saves unique articles
+"app/services/article_saver.rb"
+
+`ArticleSaver.run( [{}, {}...] )`
+- An article is considered unique if it has a source link
+that doesn't already exist in the database.
+- MAX_ARTICLES constant hold value 100, 
+	so there should never be more than 115 articles
+
+### Fetches data while offline and saves in db
+"app/jobs/fetch_data_scheduler.rb"
+- Every 14 hours a sidekiq job runs to fetch new data (via the same service calls as when loading a new page) 
+so the user doesn't miss any interesting articles while not logged in.
+
+Why 14 hours?
+- Assuming SRR data stays consistent, the URL returns 15 articles each time,
+a new one is created every hour and takes the place of the oldest.
+
+### Runs db cleanup
+The repeating job could overwhelm the db if not maintained.
+"app/jobs/article_cleanup_scheduler.rb"
+- Runs every 2 days and deletes any articles if there are more than 100, also
+starting from the oldest. 
+
+
+### User can mark articles as read or unread
+"app/javascript/controllers/article.js"
+- When toggled, the click fires an XHR. 
+- It changes the text next to the
+checkbox from `Mark Read` to `Mark Unread`. 
+- Within the update action, in the 
+controller, the articles model is found and the read attribute is updated.
+
