@@ -9,8 +9,10 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag 'controllers/article' %>
   </head>
-
   <body>
+    <%= render 'layouts/navbar' %>
+    <main>
     <%= yield %>
+  </main>
   </body>
 </html>

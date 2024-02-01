@@ -1,13 +1,14 @@
-<div class="container-lg">
-<h1><%= @article.title%></h1>
-
-<div class="card" style="width: 75%;">
-  <div class="card-body">
-    <h5 class="card-title"><%= @article.title%></h5>
-    <p class="card-text"><%= @article.description%></p>
-    <%= link_to "Go Back", root_path %>
-    <a href=<%= @article.link %> class="card-link">Read More</a>
-  </div>
+<div class="container-sm">
+  <button class="rounded-button"><%= link_to "Go Back", root_path %></button>
 </div>
-
+<div class="container-lg">
+  <h3><%= @article.title%></h3>
+  <div class="card" style="width: 75%;">
+    <div class="card-body">
+      <p class="card-text"><%= @article.description%></p>
+      <div class="rounded-button source-button">
+        <%= link_to "Go to Source", @article.link, class: "source-button card-link" %>
+      </div>
+    </div>
+  </div>
 </div>

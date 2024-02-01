@@ -13,3 +13,42 @@
  *= require_tree .
  *= require_self
  */
+
+ body {
+  /* background: #26362A; */
+  background: rgb(107, 141, 152);
+ }
+
+ .header {
+  padding-left: 4em
+ }
+
+a {
+  color: white;
+}
+
+a:link { 
+  text-decoration: none; 
+  color: white;
+} 
+
+.source-button {
+  float: right;
+}
+
+.rounded-button {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 20px; 
+  background-color: #9ea6ab;
+  transition: background-color 0.3s ease; 
+}
+
+.rounded-button:hover {
+  background-color: #9db8ca;
+}
